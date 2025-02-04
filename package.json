@@ -1,0 +1,22 @@
+{
+  "name": "@ajent-foundation/typescript-sdk",
+  "description": "Generated TypeScript SDK using OpenAPI Generator",
+  "version": "1.0.0",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "dependencies": {
+    "axios": "^1.7.9"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.1",
+    "typescript": "^5.7.3"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "patch": "npm version patch",
+    "minor": "npm version minor",
+    "major": "npm version major",
+    "update": "npm run build && npm publish --access public"
+  }
+}
