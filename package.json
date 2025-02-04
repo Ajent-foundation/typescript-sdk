@@ -18,5 +18,17 @@
     "minor": "npm version minor",
     "major": "npm version major",
     "update": "npm run build && npm publish --access public"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ajent-foundation/typescript-sdk.git"
+  },
+  "keywords": [
+    "typescript",
+    "sdk",
+    "api",
+    "openapi",
+    "tasknet"
+  ],
+  "license": "MIT"
 }
