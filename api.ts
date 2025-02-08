@@ -234,6 +234,74 @@ export type DriverType = typeof DriverType[keyof typeof DriverType];
 /**
  * 
  * @export
+ * @interface Environment
+ */
+export interface Environment {
+    /**
+     * 
+     * @type {string}
+     * @memberof Environment
+     */
+    'environmentUUID': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Environment
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Environment
+     */
+    'publicKey': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Environment
+     */
+    'createdAt': string;
+}
+/**
+ * 
+ * @export
+ * @interface EnvironmentWithSecret
+ */
+export interface EnvironmentWithSecret {
+    /**
+     * 
+     * @type {string}
+     * @memberof EnvironmentWithSecret
+     */
+    'environmentUUID': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EnvironmentWithSecret
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EnvironmentWithSecret
+     */
+    'publicKey': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EnvironmentWithSecret
+     */
+    'createdAt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EnvironmentWithSecret
+     */
+    'envSecret': string;
+}
+/**
+ * 
+ * @export
  * @interface Extension
  */
 export interface Extension {
@@ -502,6 +570,32 @@ export interface FingerprintWithSecret {
 }
 
 
+/**
+ * 
+ * @export
+ * @interface ModeV1EnvironmentsGet200Response
+ */
+export interface ModeV1EnvironmentsGet200Response {
+    /**
+     * 
+     * @type {Array<Environment>}
+     * @memberof ModeV1EnvironmentsGet200Response
+     */
+    'environments'?: Array<Environment>;
+}
+/**
+ * 
+ * @export
+ * @interface ModeV1EnvironmentsPostRequest
+ */
+export interface ModeV1EnvironmentsPostRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof ModeV1EnvironmentsPostRequest
+     */
+    'name': string;
+}
 /**
  * 
  * @export
@@ -1016,6 +1110,368 @@ export class DefaultApi extends BaseAPI {
      */
     public rootGet(options?: RawAxiosRequestConfig) {
         return DefaultApiFp(this.configuration).rootGet(options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * EnvironmentsApi - axios parameter creator
+ * @export
+ */
+export const EnvironmentsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Deletes a specific environment
+         * @summary DeleteEnvironment
+         * @param {string} mode 
+         * @param {string} environmentUUID 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1EnvironmentsEnvironmentUUIDDelete: async (mode: string, environmentUUID: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'mode' is not null or undefined
+            assertParamExists('modeV1EnvironmentsEnvironmentUUIDDelete', 'mode', mode)
+            // verify required parameter 'environmentUUID' is not null or undefined
+            assertParamExists('modeV1EnvironmentsEnvironmentUUIDDelete', 'environmentUUID', environmentUUID)
+            const localVarPath = `/{mode}/v1/environments/{environmentUUID}`
+                .replace(`{${"mode"}}`, encodeURIComponent(String(mode)))
+                .replace(`{${"environmentUUID"}}`, encodeURIComponent(String(environmentUUID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKey required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key", configuration)
+
+            // authentication ApiKeyUUID required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key-Id", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieves details of a specific environment
+         * @summary GetEnvironment
+         * @param {string} mode 
+         * @param {string} environmentUUID 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1EnvironmentsEnvironmentUUIDGet: async (mode: string, environmentUUID: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'mode' is not null or undefined
+            assertParamExists('modeV1EnvironmentsEnvironmentUUIDGet', 'mode', mode)
+            // verify required parameter 'environmentUUID' is not null or undefined
+            assertParamExists('modeV1EnvironmentsEnvironmentUUIDGet', 'environmentUUID', environmentUUID)
+            const localVarPath = `/{mode}/v1/environments/{environmentUUID}`
+                .replace(`{${"mode"}}`, encodeURIComponent(String(mode)))
+                .replace(`{${"environmentUUID"}}`, encodeURIComponent(String(environmentUUID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKey required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key", configuration)
+
+            // authentication ApiKeyUUID required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key-Id", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieves a list of all environments
+         * @summary ListEnvironments
+         * @param {string} mode 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1EnvironmentsGet: async (mode: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'mode' is not null or undefined
+            assertParamExists('modeV1EnvironmentsGet', 'mode', mode)
+            const localVarPath = `/{mode}/v1/environments`
+                .replace(`{${"mode"}}`, encodeURIComponent(String(mode)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKey required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key", configuration)
+
+            // authentication ApiKeyUUID required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key-Id", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Creates a new environment
+         * @summary CreateEnvironment
+         * @param {string} mode 
+         * @param {ModeV1EnvironmentsPostRequest} modeV1EnvironmentsPostRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1EnvironmentsPost: async (mode: string, modeV1EnvironmentsPostRequest: ModeV1EnvironmentsPostRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'mode' is not null or undefined
+            assertParamExists('modeV1EnvironmentsPost', 'mode', mode)
+            // verify required parameter 'modeV1EnvironmentsPostRequest' is not null or undefined
+            assertParamExists('modeV1EnvironmentsPost', 'modeV1EnvironmentsPostRequest', modeV1EnvironmentsPostRequest)
+            const localVarPath = `/{mode}/v1/environments`
+                .replace(`{${"mode"}}`, encodeURIComponent(String(mode)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKey required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key", configuration)
+
+            // authentication ApiKeyUUID required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key-Id", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(modeV1EnvironmentsPostRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * EnvironmentsApi - functional programming interface
+ * @export
+ */
+export const EnvironmentsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = EnvironmentsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Deletes a specific environment
+         * @summary DeleteEnvironment
+         * @param {string} mode 
+         * @param {string} environmentUUID 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async modeV1EnvironmentsEnvironmentUUIDDelete(mode: string, environmentUUID: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modeV1EnvironmentsEnvironmentUUIDDelete(mode, environmentUUID, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['EnvironmentsApi.modeV1EnvironmentsEnvironmentUUIDDelete']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Retrieves details of a specific environment
+         * @summary GetEnvironment
+         * @param {string} mode 
+         * @param {string} environmentUUID 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async modeV1EnvironmentsEnvironmentUUIDGet(mode: string, environmentUUID: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Environment>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modeV1EnvironmentsEnvironmentUUIDGet(mode, environmentUUID, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['EnvironmentsApi.modeV1EnvironmentsEnvironmentUUIDGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Retrieves a list of all environments
+         * @summary ListEnvironments
+         * @param {string} mode 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async modeV1EnvironmentsGet(mode: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ModeV1EnvironmentsGet200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modeV1EnvironmentsGet(mode, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['EnvironmentsApi.modeV1EnvironmentsGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Creates a new environment
+         * @summary CreateEnvironment
+         * @param {string} mode 
+         * @param {ModeV1EnvironmentsPostRequest} modeV1EnvironmentsPostRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async modeV1EnvironmentsPost(mode: string, modeV1EnvironmentsPostRequest: ModeV1EnvironmentsPostRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EnvironmentWithSecret>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modeV1EnvironmentsPost(mode, modeV1EnvironmentsPostRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['EnvironmentsApi.modeV1EnvironmentsPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * EnvironmentsApi - factory interface
+ * @export
+ */
+export const EnvironmentsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = EnvironmentsApiFp(configuration)
+    return {
+        /**
+         * Deletes a specific environment
+         * @summary DeleteEnvironment
+         * @param {string} mode 
+         * @param {string} environmentUUID 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1EnvironmentsEnvironmentUUIDDelete(mode: string, environmentUUID: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.modeV1EnvironmentsEnvironmentUUIDDelete(mode, environmentUUID, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieves details of a specific environment
+         * @summary GetEnvironment
+         * @param {string} mode 
+         * @param {string} environmentUUID 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1EnvironmentsEnvironmentUUIDGet(mode: string, environmentUUID: string, options?: RawAxiosRequestConfig): AxiosPromise<Environment> {
+            return localVarFp.modeV1EnvironmentsEnvironmentUUIDGet(mode, environmentUUID, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieves a list of all environments
+         * @summary ListEnvironments
+         * @param {string} mode 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1EnvironmentsGet(mode: string, options?: RawAxiosRequestConfig): AxiosPromise<ModeV1EnvironmentsGet200Response> {
+            return localVarFp.modeV1EnvironmentsGet(mode, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Creates a new environment
+         * @summary CreateEnvironment
+         * @param {string} mode 
+         * @param {ModeV1EnvironmentsPostRequest} modeV1EnvironmentsPostRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1EnvironmentsPost(mode: string, modeV1EnvironmentsPostRequest: ModeV1EnvironmentsPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<EnvironmentWithSecret> {
+            return localVarFp.modeV1EnvironmentsPost(mode, modeV1EnvironmentsPostRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * EnvironmentsApi - object-oriented interface
+ * @export
+ * @class EnvironmentsApi
+ * @extends {BaseAPI}
+ */
+export class EnvironmentsApi extends BaseAPI {
+    /**
+     * Deletes a specific environment
+     * @summary DeleteEnvironment
+     * @param {string} mode 
+     * @param {string} environmentUUID 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EnvironmentsApi
+     */
+    public modeV1EnvironmentsEnvironmentUUIDDelete(mode: string, environmentUUID: string, options?: RawAxiosRequestConfig) {
+        return EnvironmentsApiFp(this.configuration).modeV1EnvironmentsEnvironmentUUIDDelete(mode, environmentUUID, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieves details of a specific environment
+     * @summary GetEnvironment
+     * @param {string} mode 
+     * @param {string} environmentUUID 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EnvironmentsApi
+     */
+    public modeV1EnvironmentsEnvironmentUUIDGet(mode: string, environmentUUID: string, options?: RawAxiosRequestConfig) {
+        return EnvironmentsApiFp(this.configuration).modeV1EnvironmentsEnvironmentUUIDGet(mode, environmentUUID, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieves a list of all environments
+     * @summary ListEnvironments
+     * @param {string} mode 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EnvironmentsApi
+     */
+    public modeV1EnvironmentsGet(mode: string, options?: RawAxiosRequestConfig) {
+        return EnvironmentsApiFp(this.configuration).modeV1EnvironmentsGet(mode, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Creates a new environment
+     * @summary CreateEnvironment
+     * @param {string} mode 
+     * @param {ModeV1EnvironmentsPostRequest} modeV1EnvironmentsPostRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EnvironmentsApi
+     */
+    public modeV1EnvironmentsPost(mode: string, modeV1EnvironmentsPostRequest: ModeV1EnvironmentsPostRequest, options?: RawAxiosRequestConfig) {
+        return EnvironmentsApiFp(this.configuration).modeV1EnvironmentsPost(mode, modeV1EnvironmentsPostRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
