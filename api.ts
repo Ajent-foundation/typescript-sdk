@@ -24,6 +24,31 @@ import type { RequestArgs } from './base';
 import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerMap } from './base';
 
 /**
+ * 
+ * @export
+ * @interface BaseError
+ */
+export interface BaseError {
+    /**
+     * 
+     * @type {string}
+     * @memberof BaseError
+     */
+    'message': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BaseError
+     */
+    'code': string;
+    /**
+     * 
+     * @type {any}
+     * @memberof BaseError
+     */
+    'details'?: any;
+}
+/**
  * Type of browser used for fingerprinting
  * @export
  * @enum {string}
@@ -35,6 +60,57 @@ export const BrowserType = {
 
 export type BrowserType = typeof BrowserType[keyof typeof BrowserType];
 
+
+/**
+ * 
+ * @export
+ * @interface ClickCommand
+ */
+export interface ClickCommand {
+    /**
+     * 
+     * @type {string}
+     * @memberof ClickCommand
+     */
+    'action': ClickCommandActionEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof ClickCommand
+     */
+    'x': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ClickCommand
+     */
+    'y': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ClickCommand
+     */
+    'clickCount'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ClickCommand
+     */
+    'button'?: ClickCommandButtonEnum;
+}
+
+export const ClickCommandActionEnum = {
+    Click: 'Click'
+} as const;
+
+export type ClickCommandActionEnum = typeof ClickCommandActionEnum[keyof typeof ClickCommandActionEnum];
+export const ClickCommandButtonEnum = {
+    Left: 'left',
+    Right: 'right',
+    Middle: 'middle'
+} as const;
+
+export type ClickCommandButtonEnum = typeof ClickCommandButtonEnum[keyof typeof ClickCommandButtonEnum];
 
 /**
  * 
@@ -201,6 +277,32 @@ export interface CreateSessionRequestBody {
     'isProxyEnabled'?: boolean;
 }
 
+
+/**
+ * 
+ * @export
+ * @interface DelayCommand
+ */
+export interface DelayCommand {
+    /**
+     * 
+     * @type {string}
+     * @memberof DelayCommand
+     */
+    'action': DelayCommandActionEnum;
+    /**
+     * Delay in milliseconds
+     * @type {number}
+     * @memberof DelayCommand
+     */
+    'delay': number;
+}
+
+export const DelayCommandActionEnum = {
+    Delay: 'Delay'
+} as const;
+
+export type DelayCommandActionEnum = typeof DelayCommandActionEnum[keyof typeof DelayCommandActionEnum];
 
 /**
  * Type of device being emulated
@@ -573,6 +675,162 @@ export interface FingerprintWithSecret {
 /**
  * 
  * @export
+ * @interface FullScreenshotCommand
+ */
+export interface FullScreenshotCommand {
+    /**
+     * 
+     * @type {string}
+     * @memberof FullScreenshotCommand
+     */
+    'action': FullScreenshotCommandActionEnum;
+}
+
+export const FullScreenshotCommandActionEnum = {
+    FullScreenshot: 'FullScreenshot'
+} as const;
+
+export type FullScreenshotCommandActionEnum = typeof FullScreenshotCommandActionEnum[keyof typeof FullScreenshotCommandActionEnum];
+
+/**
+ * 
+ * @export
+ * @interface GetElmsCommand
+ */
+export interface GetElmsCommand {
+    /**
+     * 
+     * @type {string}
+     * @memberof GetElmsCommand
+     */
+    'action': GetElmsCommandActionEnum;
+    /**
+     * CSS selector to find elements
+     * @type {string}
+     * @memberof GetElmsCommand
+     */
+    'selector': string;
+}
+
+export const GetElmsCommandActionEnum = {
+    GetElms: 'GetElms'
+} as const;
+
+export type GetElmsCommandActionEnum = typeof GetElmsCommandActionEnum[keyof typeof GetElmsCommandActionEnum];
+
+/**
+ * 
+ * @export
+ * @interface GetRepeatedElmsByXpathCommand
+ */
+export interface GetRepeatedElmsByXpathCommand {
+    /**
+     * 
+     * @type {string}
+     * @memberof GetRepeatedElmsByXpathCommand
+     */
+    'action': GetRepeatedElmsByXpathCommandActionEnum;
+    /**
+     * XPath selector to find repeated elements
+     * @type {string}
+     * @memberof GetRepeatedElmsByXpathCommand
+     */
+    'xpath': string;
+}
+
+export const GetRepeatedElmsByXpathCommandActionEnum = {
+    GetRepeatedElmsByXpath: 'GetRepeatedElmsByXpath'
+} as const;
+
+export type GetRepeatedElmsByXpathCommandActionEnum = typeof GetRepeatedElmsByXpathCommandActionEnum[keyof typeof GetRepeatedElmsByXpathCommandActionEnum];
+
+/**
+ * 
+ * @export
+ * @interface GetRepeatedElmsCommand
+ */
+export interface GetRepeatedElmsCommand {
+    /**
+     * 
+     * @type {string}
+     * @memberof GetRepeatedElmsCommand
+     */
+    'action': GetRepeatedElmsCommandActionEnum;
+    /**
+     * CSS selector to find repeated elements
+     * @type {string}
+     * @memberof GetRepeatedElmsCommand
+     */
+    'selector': string;
+}
+
+export const GetRepeatedElmsCommandActionEnum = {
+    GetRepeatedElms: 'GetRepeatedElms'
+} as const;
+
+export type GetRepeatedElmsCommandActionEnum = typeof GetRepeatedElmsCommandActionEnum[keyof typeof GetRepeatedElmsCommandActionEnum];
+
+/**
+ * 
+ * @export
+ * @interface HoverCommand
+ */
+export interface HoverCommand {
+    /**
+     * 
+     * @type {string}
+     * @memberof HoverCommand
+     */
+    'action': HoverCommandActionEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof HoverCommand
+     */
+    'x': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof HoverCommand
+     */
+    'y': number;
+}
+
+export const HoverCommandActionEnum = {
+    Hover: 'Hover'
+} as const;
+
+export type HoverCommandActionEnum = typeof HoverCommandActionEnum[keyof typeof HoverCommandActionEnum];
+
+/**
+ * 
+ * @export
+ * @interface KeyPressCommand
+ */
+export interface KeyPressCommand {
+    /**
+     * 
+     * @type {string}
+     * @memberof KeyPressCommand
+     */
+    'action': KeyPressCommandActionEnum;
+    /**
+     * Key to press (e.g., \"Enter\", \"Tab\", \"a\", etc.)
+     * @type {string}
+     * @memberof KeyPressCommand
+     */
+    'key': string;
+}
+
+export const KeyPressCommandActionEnum = {
+    KeyPress: 'KeyPress'
+} as const;
+
+export type KeyPressCommandActionEnum = typeof KeyPressCommandActionEnum[keyof typeof KeyPressCommandActionEnum];
+
+/**
+ * 
+ * @export
  * @interface ModeV1EnvironmentsGet200Response
  */
 export interface ModeV1EnvironmentsGet200Response {
@@ -654,11 +912,17 @@ export interface ModeV1PageExecuteCommandsPostRequest {
     'sessionUUID': string;
     /**
      * 
-     * @type {Array<object>}
+     * @type {Array<ModeV1PageExecuteCommandsPostRequestCommandsInner>}
      * @memberof ModeV1PageExecuteCommandsPostRequest
      */
-    'commands': Array<object>;
+    'commands': Array<ModeV1PageExecuteCommandsPostRequestCommandsInner>;
 }
+/**
+ * @type ModeV1PageExecuteCommandsPostRequestCommandsInner
+ * @export
+ */
+export type ModeV1PageExecuteCommandsPostRequestCommandsInner = ClickCommand | DelayCommand | FullScreenshotCommand | GetElmsCommand | GetRepeatedElmsByXpathCommand | GetRepeatedElmsCommand | HoverCommand | KeyPressCommand | ScreenShotCommand | ScrollAtPositionCommand | ScrollBottomCommand | ScrollNextCommand | ScrollToCommand | ScrollTopCommand | SelectCommand | TypeInputCommand;
+
 /**
  * 
  * @export
@@ -690,6 +954,50 @@ export interface ModeV1SessionsGet200Response {
      * @memberof ModeV1SessionsGet200Response
      */
     'sessions'?: Array<Session>;
+}
+/**
+ * 
+ * @export
+ * @interface NotFoundError
+ */
+export interface NotFoundError {
+    /**
+     * 
+     * @type {string}
+     * @memberof NotFoundError
+     */
+    'message': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof NotFoundError
+     */
+    'code': string;
+    /**
+     * 
+     * @type {NotFoundErrorAllOfDetails}
+     * @memberof NotFoundError
+     */
+    'details'?: NotFoundErrorAllOfDetails;
+}
+/**
+ * 
+ * @export
+ * @interface NotFoundErrorAllOfDetails
+ */
+export interface NotFoundErrorAllOfDetails {
+    /**
+     * 
+     * @type {string}
+     * @memberof NotFoundErrorAllOfDetails
+     */
+    'resource'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof NotFoundErrorAllOfDetails
+     */
+    'id'?: string;
 }
 /**
  * 
@@ -848,6 +1156,206 @@ export type ScreenResolution = typeof ScreenResolution[keyof typeof ScreenResolu
 /**
  * 
  * @export
+ * @interface ScreenShotCommand
+ */
+export interface ScreenShotCommand {
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenShotCommand
+     */
+    'action': ScreenShotCommandActionEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenShotCommand
+     */
+    'x': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenShotCommand
+     */
+    'y': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenShotCommand
+     */
+    'width': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenShotCommand
+     */
+    'height': number;
+}
+
+export const ScreenShotCommandActionEnum = {
+    ScreenShot: 'ScreenShot'
+} as const;
+
+export type ScreenShotCommandActionEnum = typeof ScreenShotCommandActionEnum[keyof typeof ScreenShotCommandActionEnum];
+
+/**
+ * 
+ * @export
+ * @interface ScrollAtPositionCommand
+ */
+export interface ScrollAtPositionCommand {
+    /**
+     * 
+     * @type {string}
+     * @memberof ScrollAtPositionCommand
+     */
+    'action': ScrollAtPositionCommandActionEnum;
+    /**
+     * Position to scroll to (in pixels)
+     * @type {number}
+     * @memberof ScrollAtPositionCommand
+     */
+    'position': number;
+}
+
+export const ScrollAtPositionCommandActionEnum = {
+    ScrollAtPosition: 'ScrollAtPosition'
+} as const;
+
+export type ScrollAtPositionCommandActionEnum = typeof ScrollAtPositionCommandActionEnum[keyof typeof ScrollAtPositionCommandActionEnum];
+
+/**
+ * 
+ * @export
+ * @interface ScrollBottomCommand
+ */
+export interface ScrollBottomCommand {
+    /**
+     * 
+     * @type {string}
+     * @memberof ScrollBottomCommand
+     */
+    'action': ScrollBottomCommandActionEnum;
+}
+
+export const ScrollBottomCommandActionEnum = {
+    ScrollBottom: 'ScrollBottom'
+} as const;
+
+export type ScrollBottomCommandActionEnum = typeof ScrollBottomCommandActionEnum[keyof typeof ScrollBottomCommandActionEnum];
+
+/**
+ * 
+ * @export
+ * @interface ScrollNextCommand
+ */
+export interface ScrollNextCommand {
+    /**
+     * 
+     * @type {string}
+     * @memberof ScrollNextCommand
+     */
+    'action': ScrollNextCommandActionEnum;
+}
+
+export const ScrollNextCommandActionEnum = {
+    ScrollNext: 'ScrollNext'
+} as const;
+
+export type ScrollNextCommandActionEnum = typeof ScrollNextCommandActionEnum[keyof typeof ScrollNextCommandActionEnum];
+
+/**
+ * 
+ * @export
+ * @interface ScrollToCommand
+ */
+export interface ScrollToCommand {
+    /**
+     * 
+     * @type {string}
+     * @memberof ScrollToCommand
+     */
+    'action': ScrollToCommandActionEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScrollToCommand
+     */
+    'x': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScrollToCommand
+     */
+    'y': number;
+}
+
+export const ScrollToCommandActionEnum = {
+    ScrollTo: 'ScrollTo'
+} as const;
+
+export type ScrollToCommandActionEnum = typeof ScrollToCommandActionEnum[keyof typeof ScrollToCommandActionEnum];
+
+/**
+ * 
+ * @export
+ * @interface ScrollTopCommand
+ */
+export interface ScrollTopCommand {
+    /**
+     * 
+     * @type {string}
+     * @memberof ScrollTopCommand
+     */
+    'action': ScrollTopCommandActionEnum;
+}
+
+export const ScrollTopCommandActionEnum = {
+    ScrollTop: 'ScrollTop'
+} as const;
+
+export type ScrollTopCommandActionEnum = typeof ScrollTopCommandActionEnum[keyof typeof ScrollTopCommandActionEnum];
+
+/**
+ * 
+ * @export
+ * @interface SelectCommand
+ */
+export interface SelectCommand {
+    /**
+     * 
+     * @type {string}
+     * @memberof SelectCommand
+     */
+    'action': SelectCommandActionEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof SelectCommand
+     */
+    'x': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SelectCommand
+     */
+    'y': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof SelectCommand
+     */
+    'value': string;
+}
+
+export const SelectCommandActionEnum = {
+    Select: 'Select'
+} as const;
+
+export type SelectCommandActionEnum = typeof SelectCommandActionEnum[keyof typeof SelectCommandActionEnum];
+
+/**
+ * 
+ * @export
  * @interface Session
  */
 export interface Session {
@@ -925,6 +1433,44 @@ export type SessionStatus = typeof SessionStatus[keyof typeof SessionStatus];
 /**
  * 
  * @export
+ * @interface TypeInputCommand
+ */
+export interface TypeInputCommand {
+    /**
+     * 
+     * @type {string}
+     * @memberof TypeInputCommand
+     */
+    'action': TypeInputCommandActionEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof TypeInputCommand
+     */
+    'x': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TypeInputCommand
+     */
+    'y': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof TypeInputCommand
+     */
+    'input': string;
+}
+
+export const TypeInputCommandActionEnum = {
+    TypeInput: 'TypeInput'
+} as const;
+
+export type TypeInputCommandActionEnum = typeof TypeInputCommandActionEnum[keyof typeof TypeInputCommandActionEnum];
+
+/**
+ * 
+ * @export
  * @interface UpdateFingerprintProxyRequest
  */
 export interface UpdateFingerprintProxyRequest {
@@ -992,6 +1538,50 @@ export interface V1OperatorsRandomGet200Response {
      * @memberof V1OperatorsRandomGet200Response
      */
     'operatorId': string;
+}
+/**
+ * 
+ * @export
+ * @interface ValidationError
+ */
+export interface ValidationError {
+    /**
+     * 
+     * @type {string}
+     * @memberof ValidationError
+     */
+    'message': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ValidationError
+     */
+    'code': string;
+    /**
+     * 
+     * @type {ValidationErrorAllOfDetails}
+     * @memberof ValidationError
+     */
+    'details'?: ValidationErrorAllOfDetails;
+}
+/**
+ * 
+ * @export
+ * @interface ValidationErrorAllOfDetails
+ */
+export interface ValidationErrorAllOfDetails {
+    /**
+     * 
+     * @type {string}
+     * @memberof ValidationErrorAllOfDetails
+     */
+    'field'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ValidationErrorAllOfDetails
+     */
+    'value'?: string;
 }
 /**
  * VNC access mode (read-write or read-only)
@@ -2728,8 +3318,8 @@ export class OperatorsApi extends BaseAPI {
 export const PageApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * 
-         * @summary executeCommands
+         * Executes a sequence of browser automation commands within an active session. Supports various actions like clicking, typing, hovering, and more.
+         * @summary Execute browser commands
          * @param {string} mode 
          * @param {ModeV1PageExecuteCommandsPostRequest} modeV1PageExecuteCommandsPostRequest 
          * @param {*} [options] Override http request option.
@@ -2830,14 +3420,14 @@ export const PageApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = PageApiAxiosParamCreator(configuration)
     return {
         /**
-         * 
-         * @summary executeCommands
+         * Executes a sequence of browser automation commands within an active session. Supports various actions like clicking, typing, hovering, and more.
+         * @summary Execute browser commands
          * @param {string} mode 
          * @param {ModeV1PageExecuteCommandsPostRequest} modeV1PageExecuteCommandsPostRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async modeV1PageExecuteCommandsPost(mode: string, modeV1PageExecuteCommandsPostRequest: ModeV1PageExecuteCommandsPostRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async modeV1PageExecuteCommandsPost(mode: string, modeV1PageExecuteCommandsPostRequest: ModeV1PageExecuteCommandsPostRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.modeV1PageExecuteCommandsPost(mode, modeV1PageExecuteCommandsPostRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['PageApi.modeV1PageExecuteCommandsPost']?.[localVarOperationServerIndex]?.url;
@@ -2868,14 +3458,14 @@ export const PageApiFactory = function (configuration?: Configuration, basePath?
     const localVarFp = PageApiFp(configuration)
     return {
         /**
-         * 
-         * @summary executeCommands
+         * Executes a sequence of browser automation commands within an active session. Supports various actions like clicking, typing, hovering, and more.
+         * @summary Execute browser commands
          * @param {string} mode 
          * @param {ModeV1PageExecuteCommandsPostRequest} modeV1PageExecuteCommandsPostRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        modeV1PageExecuteCommandsPost(mode: string, modeV1PageExecuteCommandsPostRequest: ModeV1PageExecuteCommandsPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+        modeV1PageExecuteCommandsPost(mode: string, modeV1PageExecuteCommandsPostRequest: ModeV1PageExecuteCommandsPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<object> {
             return localVarFp.modeV1PageExecuteCommandsPost(mode, modeV1PageExecuteCommandsPostRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -2900,8 +3490,8 @@ export const PageApiFactory = function (configuration?: Configuration, basePath?
  */
 export class PageApi extends BaseAPI {
     /**
-     * 
-     * @summary executeCommands
+     * Executes a sequence of browser automation commands within an active session. Supports various actions like clicking, typing, hovering, and more.
+     * @summary Execute browser commands
      * @param {string} mode 
      * @param {ModeV1PageExecuteCommandsPostRequest} modeV1PageExecuteCommandsPostRequest 
      * @param {*} [options] Override http request option.
