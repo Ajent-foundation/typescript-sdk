@@ -1,7 +1,7 @@
 {
   "name": "@ajent-foundation/typescript-sdk",
   "description": "Generated TypeScript SDK using OpenAPI Generator",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "dependencies": {
