@@ -921,7 +921,7 @@ export interface ModeV1PageExecuteCommandsPostRequest {
  * @type ModeV1PageExecuteCommandsPostRequestCommandsInner
  * @export
  */
-export type ModeV1PageExecuteCommandsPostRequestCommandsInner = ClickCommand | DelayCommand | FullScreenshotCommand | GetElmsCommand | GetRepeatedElmsByXpathCommand | GetRepeatedElmsCommand | HoverCommand | KeyPressCommand | ScreenShotCommand | ScrollAtPositionCommand | ScrollBottomCommand | ScrollNextCommand | ScrollToCommand | ScrollTopCommand | SelectCommand | TypeInputCommand;
+export type ModeV1PageExecuteCommandsPostRequestCommandsInner = ClickCommand | DelayCommand | FullScreenshotCommand | GetElmsCommand | GetRepeatedElmsByXpathCommand | GetRepeatedElmsCommand | HoverCommand | KeyPressCommand | ScreenShotCommand | ScrollAtPositionCommand | ScrollBottomCommand | ScrollNextCommand | ScrollToCommand | ScrollTopCommand | SelectCommand | TypeInputCommand | UnknownCommand;
 
 /**
  * 
@@ -1210,11 +1210,29 @@ export interface ScrollAtPositionCommand {
      */
     'action': ScrollAtPositionCommandActionEnum;
     /**
-     * Position to scroll to (in pixels)
+     * 
      * @type {number}
      * @memberof ScrollAtPositionCommand
      */
-    'position': number;
+    'x': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScrollAtPositionCommand
+     */
+    'y': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScrollAtPositionCommand
+     */
+    'factor': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScrollAtPositionCommand
+     */
+    'axis': string;
 }
 
 export const ScrollAtPositionCommandActionEnum = {
@@ -1384,6 +1402,12 @@ export interface Session {
      */
     'isVncEnabled': boolean;
     /**
+     * VNC password for accessing the session
+     * @type {string}
+     * @memberof Session
+     */
+    'vncPassword'?: string;
+    /**
      * 
      * @type {string}
      * @memberof Session
@@ -1468,6 +1492,21 @@ export const TypeInputCommandActionEnum = {
 
 export type TypeInputCommandActionEnum = typeof TypeInputCommandActionEnum[keyof typeof TypeInputCommandActionEnum];
 
+/**
+ * Fallback command type for unknown or custom actions
+ * @export
+ * @interface UnknownCommand
+ */
+export interface UnknownCommand {
+    [key: string]: any;
+
+    /**
+     * Any action type not covered by specific commands
+     * @type {string}
+     * @memberof UnknownCommand
+     */
+    'action': string;
+}
 /**
  * 
  * @export
