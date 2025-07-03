@@ -119,6 +119,12 @@ export type ClickCommandButtonEnum = typeof ClickCommandButtonEnum[keyof typeof 
  */
 export interface ClosePageRequestBody {
     /**
+     * UUID of the browser session
+     * @type {string}
+     * @memberof ClosePageRequestBody
+     */
+    'sessionUUID': string;
+    /**
      * Index of the page to close
      * @type {number}
      * @memberof ClosePageRequestBody
@@ -464,6 +470,12 @@ export interface Extension {
  * @interface ExtractRequestBody
  */
 export interface ExtractRequestBody {
+    /**
+     * UUID of the browser session
+     * @type {string}
+     * @memberof ExtractRequestBody
+     */
+    'sessionUUID': string;
     /**
      * Query describing what data to extract
      * @type {string}
@@ -867,6 +879,12 @@ export type GetRepeatedElmsCommandActionEnum = typeof GetRepeatedElmsCommandActi
  */
 export interface GoBackRequestBody {
     /**
+     * UUID of the browser session
+     * @type {string}
+     * @memberof GoBackRequestBody
+     */
+    'sessionUUID': string;
+    /**
      * Whether to stay on the current page after going back
      * @type {boolean}
      * @memberof GoBackRequestBody
@@ -931,6 +949,19 @@ export const KeyPressCommandActionEnum = {
 
 export type KeyPressCommandActionEnum = typeof KeyPressCommandActionEnum[keyof typeof KeyPressCommandActionEnum];
 
+/**
+ * 
+ * @export
+ * @interface MarkdownRequestBody
+ */
+export interface MarkdownRequestBody {
+    /**
+     * UUID of the browser session
+     * @type {string}
+     * @memberof MarkdownRequestBody
+     */
+    'sessionUUID': string;
+}
 /**
  * 
  * @export
@@ -1070,6 +1101,19 @@ export interface ModeV1SessionsGet200Response {
      * @memberof ModeV1SessionsGet200Response
      */
     'sessions'?: Array<Session>;
+}
+/**
+ * 
+ * @export
+ * @interface NewPageRequestBody
+ */
+export interface NewPageRequestBody {
+    /**
+     * UUID of the browser session
+     * @type {string}
+     * @memberof NewPageRequestBody
+     */
+    'sessionUUID': string;
 }
 /**
  * 
@@ -1263,6 +1307,19 @@ export interface PageInfoResponsePagePageDimensions {
      * @memberof PageInfoResponsePagePageDimensions
      */
     'height': number;
+}
+/**
+ * 
+ * @export
+ * @interface PdfRequestBody
+ */
+export interface PdfRequestBody {
+    /**
+     * UUID of the browser session
+     * @type {string}
+     * @memberof PdfRequestBody
+     */
+    'sessionUUID': string;
 }
 /**
  * 
@@ -1677,6 +1734,12 @@ export type SessionStatus = typeof SessionStatus[keyof typeof SessionStatus];
  * @interface SwitchPageRequestBody
  */
 export interface SwitchPageRequestBody {
+    /**
+     * UUID of the browser session
+     * @type {string}
+     * @memberof SwitchPageRequestBody
+     */
+    'sessionUUID': string;
     /**
      * Index of the page to switch to
      * @type {number}
@@ -3859,15 +3922,15 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
          * 
          * @summary Get page content as markdown
          * @param {string} mode 
-         * @param {object} body 
+         * @param {MarkdownRequestBody} markdownRequestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        modeV1PageMarkdownPost: async (mode: string, body: object, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        modeV1PageMarkdownPost: async (mode: string, markdownRequestBody: MarkdownRequestBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'mode' is not null or undefined
             assertParamExists('modeV1PageMarkdownPost', 'mode', mode)
-            // verify required parameter 'body' is not null or undefined
-            assertParamExists('modeV1PageMarkdownPost', 'body', body)
+            // verify required parameter 'markdownRequestBody' is not null or undefined
+            assertParamExists('modeV1PageMarkdownPost', 'markdownRequestBody', markdownRequestBody)
             const localVarPath = `/{mode}/v1/page/markdown`
                 .replace(`{${"mode"}}`, encodeURIComponent(String(mode)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -3894,7 +3957,7 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(markdownRequestBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -3905,15 +3968,15 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
          * 
          * @summary Create new page/tab
          * @param {string} mode 
-         * @param {object} body 
+         * @param {NewPageRequestBody} newPageRequestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        modeV1PageNewPagePost: async (mode: string, body: object, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        modeV1PageNewPagePost: async (mode: string, newPageRequestBody: NewPageRequestBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'mode' is not null or undefined
             assertParamExists('modeV1PageNewPagePost', 'mode', mode)
-            // verify required parameter 'body' is not null or undefined
-            assertParamExists('modeV1PageNewPagePost', 'body', body)
+            // verify required parameter 'newPageRequestBody' is not null or undefined
+            assertParamExists('modeV1PageNewPagePost', 'newPageRequestBody', newPageRequestBody)
             const localVarPath = `/{mode}/v1/page/newPage`
                 .replace(`{${"mode"}}`, encodeURIComponent(String(mode)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -3940,7 +4003,7 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(newPageRequestBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -3951,15 +4014,15 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
          * 
          * @summary Generate PDF of current page
          * @param {string} mode 
-         * @param {object} body 
+         * @param {PdfRequestBody} pdfRequestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        modeV1PagePdfPost: async (mode: string, body: object, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        modeV1PagePdfPost: async (mode: string, pdfRequestBody: PdfRequestBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'mode' is not null or undefined
             assertParamExists('modeV1PagePdfPost', 'mode', mode)
-            // verify required parameter 'body' is not null or undefined
-            assertParamExists('modeV1PagePdfPost', 'body', body)
+            // verify required parameter 'pdfRequestBody' is not null or undefined
+            assertParamExists('modeV1PagePdfPost', 'pdfRequestBody', pdfRequestBody)
             const localVarPath = `/{mode}/v1/page/pdf`
                 .replace(`{${"mode"}}`, encodeURIComponent(String(mode)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -3986,7 +4049,7 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(pdfRequestBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -4123,12 +4186,12 @@ export const PageApiFp = function(configuration?: Configuration) {
          * 
          * @summary Get page content as markdown
          * @param {string} mode 
-         * @param {object} body 
+         * @param {MarkdownRequestBody} markdownRequestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async modeV1PageMarkdownPost(mode: string, body: object, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MarkdownResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.modeV1PageMarkdownPost(mode, body, options);
+        async modeV1PageMarkdownPost(mode: string, markdownRequestBody: MarkdownRequestBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MarkdownResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modeV1PageMarkdownPost(mode, markdownRequestBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['PageApi.modeV1PageMarkdownPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -4137,12 +4200,12 @@ export const PageApiFp = function(configuration?: Configuration) {
          * 
          * @summary Create new page/tab
          * @param {string} mode 
-         * @param {object} body 
+         * @param {NewPageRequestBody} newPageRequestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async modeV1PageNewPagePost(mode: string, body: object, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.modeV1PageNewPagePost(mode, body, options);
+        async modeV1PageNewPagePost(mode: string, newPageRequestBody: NewPageRequestBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modeV1PageNewPagePost(mode, newPageRequestBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['PageApi.modeV1PageNewPagePost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -4151,12 +4214,12 @@ export const PageApiFp = function(configuration?: Configuration) {
          * 
          * @summary Generate PDF of current page
          * @param {string} mode 
-         * @param {object} body 
+         * @param {PdfRequestBody} pdfRequestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async modeV1PagePdfPost(mode: string, body: object, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PdfResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.modeV1PagePdfPost(mode, body, options);
+        async modeV1PagePdfPost(mode: string, pdfRequestBody: PdfRequestBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PdfResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modeV1PagePdfPost(mode, pdfRequestBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['PageApi.modeV1PagePdfPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -4244,34 +4307,34 @@ export const PageApiFactory = function (configuration?: Configuration, basePath?
          * 
          * @summary Get page content as markdown
          * @param {string} mode 
-         * @param {object} body 
+         * @param {MarkdownRequestBody} markdownRequestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        modeV1PageMarkdownPost(mode: string, body: object, options?: RawAxiosRequestConfig): AxiosPromise<MarkdownResponse> {
-            return localVarFp.modeV1PageMarkdownPost(mode, body, options).then((request) => request(axios, basePath));
+        modeV1PageMarkdownPost(mode: string, markdownRequestBody: MarkdownRequestBody, options?: RawAxiosRequestConfig): AxiosPromise<MarkdownResponse> {
+            return localVarFp.modeV1PageMarkdownPost(mode, markdownRequestBody, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Create new page/tab
          * @param {string} mode 
-         * @param {object} body 
+         * @param {NewPageRequestBody} newPageRequestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        modeV1PageNewPagePost(mode: string, body: object, options?: RawAxiosRequestConfig): AxiosPromise<object> {
-            return localVarFp.modeV1PageNewPagePost(mode, body, options).then((request) => request(axios, basePath));
+        modeV1PageNewPagePost(mode: string, newPageRequestBody: NewPageRequestBody, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.modeV1PageNewPagePost(mode, newPageRequestBody, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Generate PDF of current page
          * @param {string} mode 
-         * @param {object} body 
+         * @param {PdfRequestBody} pdfRequestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        modeV1PagePdfPost(mode: string, body: object, options?: RawAxiosRequestConfig): AxiosPromise<PdfResponse> {
-            return localVarFp.modeV1PagePdfPost(mode, body, options).then((request) => request(axios, basePath));
+        modeV1PagePdfPost(mode: string, pdfRequestBody: PdfRequestBody, options?: RawAxiosRequestConfig): AxiosPromise<PdfResponse> {
+            return localVarFp.modeV1PagePdfPost(mode, pdfRequestBody, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -4363,39 +4426,39 @@ export class PageApi extends BaseAPI {
      * 
      * @summary Get page content as markdown
      * @param {string} mode 
-     * @param {object} body 
+     * @param {MarkdownRequestBody} markdownRequestBody 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PageApi
      */
-    public modeV1PageMarkdownPost(mode: string, body: object, options?: RawAxiosRequestConfig) {
-        return PageApiFp(this.configuration).modeV1PageMarkdownPost(mode, body, options).then((request) => request(this.axios, this.basePath));
+    public modeV1PageMarkdownPost(mode: string, markdownRequestBody: MarkdownRequestBody, options?: RawAxiosRequestConfig) {
+        return PageApiFp(this.configuration).modeV1PageMarkdownPost(mode, markdownRequestBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Create new page/tab
      * @param {string} mode 
-     * @param {object} body 
+     * @param {NewPageRequestBody} newPageRequestBody 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PageApi
      */
-    public modeV1PageNewPagePost(mode: string, body: object, options?: RawAxiosRequestConfig) {
-        return PageApiFp(this.configuration).modeV1PageNewPagePost(mode, body, options).then((request) => request(this.axios, this.basePath));
+    public modeV1PageNewPagePost(mode: string, newPageRequestBody: NewPageRequestBody, options?: RawAxiosRequestConfig) {
+        return PageApiFp(this.configuration).modeV1PageNewPagePost(mode, newPageRequestBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Generate PDF of current page
      * @param {string} mode 
-     * @param {object} body 
+     * @param {PdfRequestBody} pdfRequestBody 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PageApi
      */
-    public modeV1PagePdfPost(mode: string, body: object, options?: RawAxiosRequestConfig) {
-        return PageApiFp(this.configuration).modeV1PagePdfPost(mode, body, options).then((request) => request(this.axios, this.basePath));
+    public modeV1PagePdfPost(mode: string, pdfRequestBody: PdfRequestBody, options?: RawAxiosRequestConfig) {
+        return PageApiFp(this.configuration).modeV1PagePdfPost(mode, pdfRequestBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4409,6 +4472,387 @@ export class PageApi extends BaseAPI {
      */
     public modeV1PageSwitchPagePost(mode: string, switchPageRequestBody: SwitchPageRequestBody, options?: RawAxiosRequestConfig) {
         return PageApiFp(this.configuration).modeV1PageSwitchPagePost(mode, switchPageRequestBody, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * ProxyApi - axios parameter creator
+ * @export
+ */
+export const ProxyApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Proxy DELETE for unknown paths
+         * @param {string} mode 
+         * @param {string} path 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1ProxyPathDelete: async (mode: string, path: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'mode' is not null or undefined
+            assertParamExists('modeV1ProxyPathDelete', 'mode', mode)
+            // verify required parameter 'path' is not null or undefined
+            assertParamExists('modeV1ProxyPathDelete', 'path', path)
+            const localVarPath = `/{mode}/v1/proxy/{path}`
+                .replace(`{${"mode"}}`, encodeURIComponent(String(mode)))
+                .replace(`{${"path"}}`, encodeURIComponent(String(path)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKey required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key", configuration)
+
+            // authentication ApiKeyUUID required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key-Id", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Proxy GET for unknown paths
+         * @param {string} mode 
+         * @param {string} path 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1ProxyPathGet: async (mode: string, path: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'mode' is not null or undefined
+            assertParamExists('modeV1ProxyPathGet', 'mode', mode)
+            // verify required parameter 'path' is not null or undefined
+            assertParamExists('modeV1ProxyPathGet', 'path', path)
+            const localVarPath = `/{mode}/v1/proxy/{path}`
+                .replace(`{${"mode"}}`, encodeURIComponent(String(mode)))
+                .replace(`{${"path"}}`, encodeURIComponent(String(path)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKey required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key", configuration)
+
+            // authentication ApiKeyUUID required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key-Id", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Flexible endpoint that can handle any path, body, and response
+         * @summary Proxy endpoint for unknown paths
+         * @param {string} mode 
+         * @param {string} path Any dynamic path
+         * @param {{ [key: string]: any; }} [requestBody] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1ProxyPathPost: async (mode: string, path: string, requestBody?: { [key: string]: any; }, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'mode' is not null or undefined
+            assertParamExists('modeV1ProxyPathPost', 'mode', mode)
+            // verify required parameter 'path' is not null or undefined
+            assertParamExists('modeV1ProxyPathPost', 'path', path)
+            const localVarPath = `/{mode}/v1/proxy/{path}`
+                .replace(`{${"mode"}}`, encodeURIComponent(String(mode)))
+                .replace(`{${"path"}}`, encodeURIComponent(String(path)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKey required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key", configuration)
+
+            // authentication ApiKeyUUID required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key-Id", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(requestBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Proxy PUT for unknown paths
+         * @param {string} mode 
+         * @param {string} path 
+         * @param {{ [key: string]: any; }} [requestBody] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1ProxyPathPut: async (mode: string, path: string, requestBody?: { [key: string]: any; }, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'mode' is not null or undefined
+            assertParamExists('modeV1ProxyPathPut', 'mode', mode)
+            // verify required parameter 'path' is not null or undefined
+            assertParamExists('modeV1ProxyPathPut', 'path', path)
+            const localVarPath = `/{mode}/v1/proxy/{path}`
+                .replace(`{${"mode"}}`, encodeURIComponent(String(mode)))
+                .replace(`{${"path"}}`, encodeURIComponent(String(path)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKey required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key", configuration)
+
+            // authentication ApiKeyUUID required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key-Id", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(requestBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * ProxyApi - functional programming interface
+ * @export
+ */
+export const ProxyApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ProxyApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary Proxy DELETE for unknown paths
+         * @param {string} mode 
+         * @param {string} path 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async modeV1ProxyPathDelete(mode: string, path: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: any; }>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modeV1ProxyPathDelete(mode, path, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ProxyApi.modeV1ProxyPathDelete']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Proxy GET for unknown paths
+         * @param {string} mode 
+         * @param {string} path 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async modeV1ProxyPathGet(mode: string, path: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: any; }>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modeV1ProxyPathGet(mode, path, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ProxyApi.modeV1ProxyPathGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Flexible endpoint that can handle any path, body, and response
+         * @summary Proxy endpoint for unknown paths
+         * @param {string} mode 
+         * @param {string} path Any dynamic path
+         * @param {{ [key: string]: any; }} [requestBody] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async modeV1ProxyPathPost(mode: string, path: string, requestBody?: { [key: string]: any; }, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: any; }>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modeV1ProxyPathPost(mode, path, requestBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ProxyApi.modeV1ProxyPathPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Proxy PUT for unknown paths
+         * @param {string} mode 
+         * @param {string} path 
+         * @param {{ [key: string]: any; }} [requestBody] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async modeV1ProxyPathPut(mode: string, path: string, requestBody?: { [key: string]: any; }, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: any; }>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modeV1ProxyPathPut(mode, path, requestBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ProxyApi.modeV1ProxyPathPut']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * ProxyApi - factory interface
+ * @export
+ */
+export const ProxyApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ProxyApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Proxy DELETE for unknown paths
+         * @param {string} mode 
+         * @param {string} path 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1ProxyPathDelete(mode: string, path: string, options?: RawAxiosRequestConfig): AxiosPromise<{ [key: string]: any; }> {
+            return localVarFp.modeV1ProxyPathDelete(mode, path, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Proxy GET for unknown paths
+         * @param {string} mode 
+         * @param {string} path 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1ProxyPathGet(mode: string, path: string, options?: RawAxiosRequestConfig): AxiosPromise<{ [key: string]: any; }> {
+            return localVarFp.modeV1ProxyPathGet(mode, path, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Flexible endpoint that can handle any path, body, and response
+         * @summary Proxy endpoint for unknown paths
+         * @param {string} mode 
+         * @param {string} path Any dynamic path
+         * @param {{ [key: string]: any; }} [requestBody] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1ProxyPathPost(mode: string, path: string, requestBody?: { [key: string]: any; }, options?: RawAxiosRequestConfig): AxiosPromise<{ [key: string]: any; }> {
+            return localVarFp.modeV1ProxyPathPost(mode, path, requestBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Proxy PUT for unknown paths
+         * @param {string} mode 
+         * @param {string} path 
+         * @param {{ [key: string]: any; }} [requestBody] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1ProxyPathPut(mode: string, path: string, requestBody?: { [key: string]: any; }, options?: RawAxiosRequestConfig): AxiosPromise<{ [key: string]: any; }> {
+            return localVarFp.modeV1ProxyPathPut(mode, path, requestBody, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * ProxyApi - object-oriented interface
+ * @export
+ * @class ProxyApi
+ * @extends {BaseAPI}
+ */
+export class ProxyApi extends BaseAPI {
+    /**
+     * 
+     * @summary Proxy DELETE for unknown paths
+     * @param {string} mode 
+     * @param {string} path 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProxyApi
+     */
+    public modeV1ProxyPathDelete(mode: string, path: string, options?: RawAxiosRequestConfig) {
+        return ProxyApiFp(this.configuration).modeV1ProxyPathDelete(mode, path, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Proxy GET for unknown paths
+     * @param {string} mode 
+     * @param {string} path 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProxyApi
+     */
+    public modeV1ProxyPathGet(mode: string, path: string, options?: RawAxiosRequestConfig) {
+        return ProxyApiFp(this.configuration).modeV1ProxyPathGet(mode, path, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Flexible endpoint that can handle any path, body, and response
+     * @summary Proxy endpoint for unknown paths
+     * @param {string} mode 
+     * @param {string} path Any dynamic path
+     * @param {{ [key: string]: any; }} [requestBody] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProxyApi
+     */
+    public modeV1ProxyPathPost(mode: string, path: string, requestBody?: { [key: string]: any; }, options?: RawAxiosRequestConfig) {
+        return ProxyApiFp(this.configuration).modeV1ProxyPathPost(mode, path, requestBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Proxy PUT for unknown paths
+     * @param {string} mode 
+     * @param {string} path 
+     * @param {{ [key: string]: any; }} [requestBody] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProxyApi
+     */
+    public modeV1ProxyPathPut(mode: string, path: string, requestBody?: { [key: string]: any; }, options?: RawAxiosRequestConfig) {
+        return ProxyApiFp(this.configuration).modeV1ProxyPathPut(mode, path, requestBody, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
