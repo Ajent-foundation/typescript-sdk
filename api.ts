@@ -115,6 +115,19 @@ export type ClickCommandButtonEnum = typeof ClickCommandButtonEnum[keyof typeof 
 /**
  * 
  * @export
+ * @interface ClosePageRequestBody
+ */
+export interface ClosePageRequestBody {
+    /**
+     * Index of the page to close
+     * @type {number}
+     * @memberof ClosePageRequestBody
+     */
+    'index': number;
+}
+/**
+ * 
+ * @export
  * @interface CreateFingerprintRequestBody
  */
 export interface CreateFingerprintRequestBody {
@@ -320,6 +333,19 @@ export type DeviceType = typeof DeviceType[keyof typeof DeviceType];
 
 
 /**
+ * 
+ * @export
+ * @interface DownloadFileRequestBody
+ */
+export interface DownloadFileRequestBody {
+    /**
+     * Name of the file to download
+     * @type {string}
+     * @memberof DownloadFileRequestBody
+     */
+    'fileNames': string;
+}
+/**
  * Browser automation driver type
  * @export
  * @enum {string}
@@ -431,6 +457,70 @@ export interface Extension {
      * @memberof Extension
      */
     'url': string;
+}
+/**
+ * 
+ * @export
+ * @interface ExtractRequestBody
+ */
+export interface ExtractRequestBody {
+    /**
+     * Query describing what data to extract
+     * @type {string}
+     * @memberof ExtractRequestBody
+     */
+    'userQuery': string;
+    /**
+     * Description of expected response format
+     * @type {{ [key: string]: any; }}
+     * @memberof ExtractRequestBody
+     */
+    'responseDescription': { [key: string]: any; };
+    /**
+     * Response format excluding links and images
+     * @type {{ [key: string]: any; }}
+     * @memberof ExtractRequestBody
+     */
+    'responseDescriptionNoLinkOrImage': { [key: string]: any; };
+}
+/**
+ * 
+ * @export
+ * @interface FileDownloadResponse
+ */
+export interface FileDownloadResponse {
+    /**
+     * Base64 encoded file content
+     * @type {string}
+     * @memberof FileDownloadResponse
+     */
+    'fileContent': string;
+}
+/**
+ * 
+ * @export
+ * @interface FileUploadResponse
+ */
+export interface FileUploadResponse {
+    /**
+     * Name of the uploaded file
+     * @type {string}
+     * @memberof FileUploadResponse
+     */
+    'fileName': string;
+}
+/**
+ * 
+ * @export
+ * @interface FilesListResponse
+ */
+export interface FilesListResponse {
+    /**
+     * List of file names
+     * @type {Array<string>}
+     * @memberof FilesListResponse
+     */
+    'files': Array<string>;
 }
 /**
  * 
@@ -773,6 +863,19 @@ export type GetRepeatedElmsCommandActionEnum = typeof GetRepeatedElmsCommandActi
 /**
  * 
  * @export
+ * @interface GoBackRequestBody
+ */
+export interface GoBackRequestBody {
+    /**
+     * Whether to stay on the current page after going back
+     * @type {boolean}
+     * @memberof GoBackRequestBody
+     */
+    'stayOnPage'?: boolean;
+}
+/**
+ * 
+ * @export
  * @interface HoverCommand
  */
 export interface HoverCommand {
@@ -828,6 +931,19 @@ export const KeyPressCommandActionEnum = {
 
 export type KeyPressCommandActionEnum = typeof KeyPressCommandActionEnum[keyof typeof KeyPressCommandActionEnum];
 
+/**
+ * 
+ * @export
+ * @interface MarkdownResponse
+ */
+export interface MarkdownResponse {
+    /**
+     * Page content in markdown format
+     * @type {string}
+     * @memberof MarkdownResponse
+     */
+    'page': string;
+}
 /**
  * 
  * @export
@@ -1074,6 +1190,94 @@ export interface OperatorInfo {
     'hostname': string;
 }
 /**
+ * 
+ * @export
+ * @interface PageInfoResponse
+ */
+export interface PageInfoResponse {
+    /**
+     * ID of the browser session
+     * @type {string}
+     * @memberof PageInfoResponse
+     */
+    'sessionID': string;
+    /**
+     * 
+     * @type {PageInfoResponsePage}
+     * @memberof PageInfoResponse
+     */
+    'page': PageInfoResponsePage;
+}
+/**
+ * 
+ * @export
+ * @interface PageInfoResponsePage
+ */
+export interface PageInfoResponsePage {
+    /**
+     * Current page URL
+     * @type {string}
+     * @memberof PageInfoResponsePage
+     */
+    'url': string;
+    /**
+     * Device pixel ratio
+     * @type {number}
+     * @memberof PageInfoResponsePage
+     */
+    'devicePixelRatio': number;
+    /**
+     * Scroll information
+     * @type {object}
+     * @memberof PageInfoResponsePage
+     */
+    'scroller': object;
+    /**
+     * 
+     * @type {PageInfoResponsePagePageDimensions}
+     * @memberof PageInfoResponsePage
+     */
+    'pageDimensions': PageInfoResponsePagePageDimensions;
+    /**
+     * Base64 encoded page screenshot
+     * @type {string}
+     * @memberof PageInfoResponsePage
+     */
+    'img': string;
+}
+/**
+ * 
+ * @export
+ * @interface PageInfoResponsePagePageDimensions
+ */
+export interface PageInfoResponsePagePageDimensions {
+    /**
+     * Page width
+     * @type {number}
+     * @memberof PageInfoResponsePagePageDimensions
+     */
+    'width': number;
+    /**
+     * Page height (scroll height)
+     * @type {number}
+     * @memberof PageInfoResponsePagePageDimensions
+     */
+    'height': number;
+}
+/**
+ * 
+ * @export
+ * @interface PdfResponse
+ */
+export interface PdfResponse {
+    /**
+     * Base64 encoded PDF content
+     * @type {string}
+     * @memberof PdfResponse
+     */
+    'page': string;
+}
+/**
  * Operating system platform
  * @export
  * @enum {string}
@@ -1103,6 +1307,19 @@ export const ProxyType = {
 export type ProxyType = typeof ProxyType[keyof typeof ProxyType];
 
 
+/**
+ * 
+ * @export
+ * @interface RegisterApiKeyRequestBody
+ */
+export interface RegisterApiKeyRequestBody {
+    /**
+     * API key to register for VNC access
+     * @type {string}
+     * @memberof RegisterApiKeyRequestBody
+     */
+    'apiKey': string;
+}
 /**
  * Valid DPI (Dots Per Inch) values for screen configuration Possible values: 96, 120, 144, 192 
  * @export
@@ -1457,6 +1674,19 @@ export type SessionStatus = typeof SessionStatus[keyof typeof SessionStatus];
 /**
  * 
  * @export
+ * @interface SwitchPageRequestBody
+ */
+export interface SwitchPageRequestBody {
+    /**
+     * Index of the page to switch to
+     * @type {number}
+     * @memberof SwitchPageRequestBody
+     */
+    'index': number;
+}
+/**
+ * 
+ * @export
  * @interface TypeInputCommand
  */
 export interface TypeInputCommand {
@@ -1532,6 +1762,19 @@ export interface UpdateSessionRequestBody {
      * @memberof UpdateSessionRequestBody
      */
     'newLeaseTime': number;
+}
+/**
+ * 
+ * @export
+ * @interface UploadFileRequestBody
+ */
+export interface UploadFileRequestBody {
+    /**
+     * Base64 encoded file content to upload
+     * @type {string}
+     * @memberof UploadFileRequestBody
+     */
+    'base64File': string;
 }
 /**
  * 
@@ -1621,6 +1864,32 @@ export interface ValidationErrorAllOfDetails {
      * @memberof ValidationErrorAllOfDetails
      */
     'value'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface VncClientControlRequestBody
+ */
+export interface VncClientControlRequestBody {
+    /**
+     * ID of the VNC client
+     * @type {string}
+     * @memberof VncClientControlRequestBody
+     */
+    'clientId': string;
+}
+/**
+ * 
+ * @export
+ * @interface VncClientsResponse
+ */
+export interface VncClientsResponse {
+    /**
+     * List of connected VNC clients
+     * @type {Array<object>}
+     * @memberof VncClientsResponse
+     */
+    'clients': Array<object>;
 }
 /**
  * VNC access mode (read-write or read-only)
@@ -3357,6 +3626,52 @@ export class OperatorsApi extends BaseAPI {
 export const PageApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
+         * 
+         * @summary Close page by index
+         * @param {string} mode 
+         * @param {ClosePageRequestBody} closePageRequestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1PageClosePagePost: async (mode: string, closePageRequestBody: ClosePageRequestBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'mode' is not null or undefined
+            assertParamExists('modeV1PageClosePagePost', 'mode', mode)
+            // verify required parameter 'closePageRequestBody' is not null or undefined
+            assertParamExists('modeV1PageClosePagePost', 'closePageRequestBody', closePageRequestBody)
+            const localVarPath = `/{mode}/v1/page/closePage`
+                .replace(`{${"mode"}}`, encodeURIComponent(String(mode)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKey required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key", configuration)
+
+            // authentication ApiKeyUUID required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key-Id", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(closePageRequestBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Executes a sequence of browser automation commands within an active session. Supports various actions like clicking, typing, hovering, and more.
          * @summary Execute browser commands
          * @param {string} mode 
@@ -3396,6 +3711,98 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(modeV1PageExecuteCommandsPostRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Extract data from page using AI
+         * @param {string} mode 
+         * @param {ExtractRequestBody} extractRequestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1PageExtractPost: async (mode: string, extractRequestBody: ExtractRequestBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'mode' is not null or undefined
+            assertParamExists('modeV1PageExtractPost', 'mode', mode)
+            // verify required parameter 'extractRequestBody' is not null or undefined
+            assertParamExists('modeV1PageExtractPost', 'extractRequestBody', extractRequestBody)
+            const localVarPath = `/{mode}/v1/page/extract`
+                .replace(`{${"mode"}}`, encodeURIComponent(String(mode)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKey required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key", configuration)
+
+            // authentication ApiKeyUUID required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key-Id", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(extractRequestBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Navigate back in browser history
+         * @param {string} mode 
+         * @param {GoBackRequestBody} goBackRequestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1PageGoBackPost: async (mode: string, goBackRequestBody: GoBackRequestBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'mode' is not null or undefined
+            assertParamExists('modeV1PageGoBackPost', 'mode', mode)
+            // verify required parameter 'goBackRequestBody' is not null or undefined
+            assertParamExists('modeV1PageGoBackPost', 'goBackRequestBody', goBackRequestBody)
+            const localVarPath = `/{mode}/v1/page/goBack`
+                .replace(`{${"mode"}}`, encodeURIComponent(String(mode)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKey required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key", configuration)
+
+            // authentication ApiKeyUUID required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key-Id", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(goBackRequestBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -3448,6 +3855,190 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @summary Get page content as markdown
+         * @param {string} mode 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1PageMarkdownPost: async (mode: string, body: object, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'mode' is not null or undefined
+            assertParamExists('modeV1PageMarkdownPost', 'mode', mode)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('modeV1PageMarkdownPost', 'body', body)
+            const localVarPath = `/{mode}/v1/page/markdown`
+                .replace(`{${"mode"}}`, encodeURIComponent(String(mode)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKey required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key", configuration)
+
+            // authentication ApiKeyUUID required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key-Id", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Create new page/tab
+         * @param {string} mode 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1PageNewPagePost: async (mode: string, body: object, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'mode' is not null or undefined
+            assertParamExists('modeV1PageNewPagePost', 'mode', mode)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('modeV1PageNewPagePost', 'body', body)
+            const localVarPath = `/{mode}/v1/page/newPage`
+                .replace(`{${"mode"}}`, encodeURIComponent(String(mode)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKey required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key", configuration)
+
+            // authentication ApiKeyUUID required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key-Id", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Generate PDF of current page
+         * @param {string} mode 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1PagePdfPost: async (mode: string, body: object, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'mode' is not null or undefined
+            assertParamExists('modeV1PagePdfPost', 'mode', mode)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('modeV1PagePdfPost', 'body', body)
+            const localVarPath = `/{mode}/v1/page/pdf`
+                .replace(`{${"mode"}}`, encodeURIComponent(String(mode)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKey required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key", configuration)
+
+            // authentication ApiKeyUUID required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key-Id", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Switch to page by index
+         * @param {string} mode 
+         * @param {SwitchPageRequestBody} switchPageRequestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1PageSwitchPagePost: async (mode: string, switchPageRequestBody: SwitchPageRequestBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'mode' is not null or undefined
+            assertParamExists('modeV1PageSwitchPagePost', 'mode', mode)
+            // verify required parameter 'switchPageRequestBody' is not null or undefined
+            assertParamExists('modeV1PageSwitchPagePost', 'switchPageRequestBody', switchPageRequestBody)
+            const localVarPath = `/{mode}/v1/page/switchPage`
+                .replace(`{${"mode"}}`, encodeURIComponent(String(mode)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKey required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key", configuration)
+
+            // authentication ApiKeyUUID required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key-Id", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(switchPageRequestBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -3458,6 +4049,20 @@ export const PageApiAxiosParamCreator = function (configuration?: Configuration)
 export const PageApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = PageApiAxiosParamCreator(configuration)
     return {
+        /**
+         * 
+         * @summary Close page by index
+         * @param {string} mode 
+         * @param {ClosePageRequestBody} closePageRequestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async modeV1PageClosePagePost(mode: string, closePageRequestBody: ClosePageRequestBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modeV1PageClosePagePost(mode, closePageRequestBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PageApi.modeV1PageClosePagePost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
         /**
          * Executes a sequence of browser automation commands within an active session. Supports various actions like clicking, typing, hovering, and more.
          * @summary Execute browser commands
@@ -3474,6 +4079,34 @@ export const PageApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Extract data from page using AI
+         * @param {string} mode 
+         * @param {ExtractRequestBody} extractRequestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async modeV1PageExtractPost(mode: string, extractRequestBody: ExtractRequestBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modeV1PageExtractPost(mode, extractRequestBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PageApi.modeV1PageExtractPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Navigate back in browser history
+         * @param {string} mode 
+         * @param {GoBackRequestBody} goBackRequestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async modeV1PageGoBackPost(mode: string, goBackRequestBody: GoBackRequestBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PageInfoResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modeV1PageGoBackPost(mode, goBackRequestBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PageApi.modeV1PageGoBackPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @summary goToPage
          * @param {string} mode 
          * @param {ModeV1PageGoToPagePostRequest} modeV1PageGoToPagePostRequest 
@@ -3484,6 +4117,62 @@ export const PageApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.modeV1PageGoToPagePost(mode, modeV1PageGoToPagePostRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['PageApi.modeV1PageGoToPagePost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get page content as markdown
+         * @param {string} mode 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async modeV1PageMarkdownPost(mode: string, body: object, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MarkdownResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modeV1PageMarkdownPost(mode, body, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PageApi.modeV1PageMarkdownPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Create new page/tab
+         * @param {string} mode 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async modeV1PageNewPagePost(mode: string, body: object, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modeV1PageNewPagePost(mode, body, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PageApi.modeV1PageNewPagePost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Generate PDF of current page
+         * @param {string} mode 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async modeV1PagePdfPost(mode: string, body: object, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PdfResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modeV1PagePdfPost(mode, body, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PageApi.modeV1PagePdfPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Switch to page by index
+         * @param {string} mode 
+         * @param {SwitchPageRequestBody} switchPageRequestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async modeV1PageSwitchPagePost(mode: string, switchPageRequestBody: SwitchPageRequestBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modeV1PageSwitchPagePost(mode, switchPageRequestBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PageApi.modeV1PageSwitchPagePost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -3497,6 +4186,17 @@ export const PageApiFactory = function (configuration?: Configuration, basePath?
     const localVarFp = PageApiFp(configuration)
     return {
         /**
+         * 
+         * @summary Close page by index
+         * @param {string} mode 
+         * @param {ClosePageRequestBody} closePageRequestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1PageClosePagePost(mode: string, closePageRequestBody: ClosePageRequestBody, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.modeV1PageClosePagePost(mode, closePageRequestBody, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Executes a sequence of browser automation commands within an active session. Supports various actions like clicking, typing, hovering, and more.
          * @summary Execute browser commands
          * @param {string} mode 
@@ -3509,6 +4209,28 @@ export const PageApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * 
+         * @summary Extract data from page using AI
+         * @param {string} mode 
+         * @param {ExtractRequestBody} extractRequestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1PageExtractPost(mode: string, extractRequestBody: ExtractRequestBody, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.modeV1PageExtractPost(mode, extractRequestBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Navigate back in browser history
+         * @param {string} mode 
+         * @param {GoBackRequestBody} goBackRequestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1PageGoBackPost(mode: string, goBackRequestBody: GoBackRequestBody, options?: RawAxiosRequestConfig): AxiosPromise<PageInfoResponse> {
+            return localVarFp.modeV1PageGoBackPost(mode, goBackRequestBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary goToPage
          * @param {string} mode 
          * @param {ModeV1PageGoToPagePostRequest} modeV1PageGoToPagePostRequest 
@@ -3517,6 +4239,50 @@ export const PageApiFactory = function (configuration?: Configuration, basePath?
          */
         modeV1PageGoToPagePost(mode: string, modeV1PageGoToPagePostRequest: ModeV1PageGoToPagePostRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
             return localVarFp.modeV1PageGoToPagePost(mode, modeV1PageGoToPagePostRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get page content as markdown
+         * @param {string} mode 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1PageMarkdownPost(mode: string, body: object, options?: RawAxiosRequestConfig): AxiosPromise<MarkdownResponse> {
+            return localVarFp.modeV1PageMarkdownPost(mode, body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Create new page/tab
+         * @param {string} mode 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1PageNewPagePost(mode: string, body: object, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.modeV1PageNewPagePost(mode, body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Generate PDF of current page
+         * @param {string} mode 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1PagePdfPost(mode: string, body: object, options?: RawAxiosRequestConfig): AxiosPromise<PdfResponse> {
+            return localVarFp.modeV1PagePdfPost(mode, body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Switch to page by index
+         * @param {string} mode 
+         * @param {SwitchPageRequestBody} switchPageRequestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1PageSwitchPagePost(mode: string, switchPageRequestBody: SwitchPageRequestBody, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.modeV1PageSwitchPagePost(mode, switchPageRequestBody, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -3528,6 +4294,19 @@ export const PageApiFactory = function (configuration?: Configuration, basePath?
  * @extends {BaseAPI}
  */
 export class PageApi extends BaseAPI {
+    /**
+     * 
+     * @summary Close page by index
+     * @param {string} mode 
+     * @param {ClosePageRequestBody} closePageRequestBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PageApi
+     */
+    public modeV1PageClosePagePost(mode: string, closePageRequestBody: ClosePageRequestBody, options?: RawAxiosRequestConfig) {
+        return PageApiFp(this.configuration).modeV1PageClosePagePost(mode, closePageRequestBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * Executes a sequence of browser automation commands within an active session. Supports various actions like clicking, typing, hovering, and more.
      * @summary Execute browser commands
@@ -3543,6 +4322,32 @@ export class PageApi extends BaseAPI {
 
     /**
      * 
+     * @summary Extract data from page using AI
+     * @param {string} mode 
+     * @param {ExtractRequestBody} extractRequestBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PageApi
+     */
+    public modeV1PageExtractPost(mode: string, extractRequestBody: ExtractRequestBody, options?: RawAxiosRequestConfig) {
+        return PageApiFp(this.configuration).modeV1PageExtractPost(mode, extractRequestBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Navigate back in browser history
+     * @param {string} mode 
+     * @param {GoBackRequestBody} goBackRequestBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PageApi
+     */
+    public modeV1PageGoBackPost(mode: string, goBackRequestBody: GoBackRequestBody, options?: RawAxiosRequestConfig) {
+        return PageApiFp(this.configuration).modeV1PageGoBackPost(mode, goBackRequestBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @summary goToPage
      * @param {string} mode 
      * @param {ModeV1PageGoToPagePostRequest} modeV1PageGoToPagePostRequest 
@@ -3552,6 +4357,58 @@ export class PageApi extends BaseAPI {
      */
     public modeV1PageGoToPagePost(mode: string, modeV1PageGoToPagePostRequest: ModeV1PageGoToPagePostRequest, options?: RawAxiosRequestConfig) {
         return PageApiFp(this.configuration).modeV1PageGoToPagePost(mode, modeV1PageGoToPagePostRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get page content as markdown
+     * @param {string} mode 
+     * @param {object} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PageApi
+     */
+    public modeV1PageMarkdownPost(mode: string, body: object, options?: RawAxiosRequestConfig) {
+        return PageApiFp(this.configuration).modeV1PageMarkdownPost(mode, body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Create new page/tab
+     * @param {string} mode 
+     * @param {object} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PageApi
+     */
+    public modeV1PageNewPagePost(mode: string, body: object, options?: RawAxiosRequestConfig) {
+        return PageApiFp(this.configuration).modeV1PageNewPagePost(mode, body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Generate PDF of current page
+     * @param {string} mode 
+     * @param {object} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PageApi
+     */
+    public modeV1PagePdfPost(mode: string, body: object, options?: RawAxiosRequestConfig) {
+        return PageApiFp(this.configuration).modeV1PagePdfPost(mode, body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Switch to page by index
+     * @param {string} mode 
+     * @param {SwitchPageRequestBody} switchPageRequestBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PageApi
+     */
+    public modeV1PageSwitchPagePost(mode: string, switchPageRequestBody: SwitchPageRequestBody, options?: RawAxiosRequestConfig) {
+        return PageApiFp(this.configuration).modeV1PageSwitchPagePost(mode, switchPageRequestBody, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -3563,6 +4420,359 @@ export class PageApi extends BaseAPI {
  */
 export const SessionsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * 
+         * @summary Download file from session
+         * @param {string} mode 
+         * @param {string} sessionUUID 
+         * @param {DownloadFileRequestBody} downloadFileRequestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1SessionSessionUUIDDownloadFilePost: async (mode: string, sessionUUID: string, downloadFileRequestBody: DownloadFileRequestBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'mode' is not null or undefined
+            assertParamExists('modeV1SessionSessionUUIDDownloadFilePost', 'mode', mode)
+            // verify required parameter 'sessionUUID' is not null or undefined
+            assertParamExists('modeV1SessionSessionUUIDDownloadFilePost', 'sessionUUID', sessionUUID)
+            // verify required parameter 'downloadFileRequestBody' is not null or undefined
+            assertParamExists('modeV1SessionSessionUUIDDownloadFilePost', 'downloadFileRequestBody', downloadFileRequestBody)
+            const localVarPath = `/{mode}/v1/session/{sessionUUID}/downloadFile`
+                .replace(`{${"mode"}}`, encodeURIComponent(String(mode)))
+                .replace(`{${"sessionUUID"}}`, encodeURIComponent(String(sessionUUID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKey required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key", configuration)
+
+            // authentication ApiKeyUUID required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key-Id", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(downloadFileRequestBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get list of session files
+         * @param {string} mode 
+         * @param {string} sessionUUID 
+         * @param {ModeV1SessionSessionUUIDFilesGetTypeEnum} type Type of files to retrieve
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1SessionSessionUUIDFilesGet: async (mode: string, sessionUUID: string, type: ModeV1SessionSessionUUIDFilesGetTypeEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'mode' is not null or undefined
+            assertParamExists('modeV1SessionSessionUUIDFilesGet', 'mode', mode)
+            // verify required parameter 'sessionUUID' is not null or undefined
+            assertParamExists('modeV1SessionSessionUUIDFilesGet', 'sessionUUID', sessionUUID)
+            // verify required parameter 'type' is not null or undefined
+            assertParamExists('modeV1SessionSessionUUIDFilesGet', 'type', type)
+            const localVarPath = `/{mode}/v1/session/{sessionUUID}/files`
+                .replace(`{${"mode"}}`, encodeURIComponent(String(mode)))
+                .replace(`{${"sessionUUID"}}`, encodeURIComponent(String(sessionUUID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKey required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key", configuration)
+
+            // authentication ApiKeyUUID required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key-Id", configuration)
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Upload file to session
+         * @param {string} mode 
+         * @param {string} sessionUUID 
+         * @param {UploadFileRequestBody} uploadFileRequestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1SessionSessionUUIDUploadFilePost: async (mode: string, sessionUUID: string, uploadFileRequestBody: UploadFileRequestBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'mode' is not null or undefined
+            assertParamExists('modeV1SessionSessionUUIDUploadFilePost', 'mode', mode)
+            // verify required parameter 'sessionUUID' is not null or undefined
+            assertParamExists('modeV1SessionSessionUUIDUploadFilePost', 'sessionUUID', sessionUUID)
+            // verify required parameter 'uploadFileRequestBody' is not null or undefined
+            assertParamExists('modeV1SessionSessionUUIDUploadFilePost', 'uploadFileRequestBody', uploadFileRequestBody)
+            const localVarPath = `/{mode}/v1/session/{sessionUUID}/uploadFile`
+                .replace(`{${"mode"}}`, encodeURIComponent(String(mode)))
+                .replace(`{${"sessionUUID"}}`, encodeURIComponent(String(sessionUUID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKey required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key", configuration)
+
+            // authentication ApiKeyUUID required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key-Id", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(uploadFileRequestBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Grant control to VNC client
+         * @param {string} mode 
+         * @param {string} sessionUUID 
+         * @param {string} clientId 
+         * @param {VncClientControlRequestBody} vncClientControlRequestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1SessionSessionUUIDVncClientsClientIdGrantControlPost: async (mode: string, sessionUUID: string, clientId: string, vncClientControlRequestBody: VncClientControlRequestBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'mode' is not null or undefined
+            assertParamExists('modeV1SessionSessionUUIDVncClientsClientIdGrantControlPost', 'mode', mode)
+            // verify required parameter 'sessionUUID' is not null or undefined
+            assertParamExists('modeV1SessionSessionUUIDVncClientsClientIdGrantControlPost', 'sessionUUID', sessionUUID)
+            // verify required parameter 'clientId' is not null or undefined
+            assertParamExists('modeV1SessionSessionUUIDVncClientsClientIdGrantControlPost', 'clientId', clientId)
+            // verify required parameter 'vncClientControlRequestBody' is not null or undefined
+            assertParamExists('modeV1SessionSessionUUIDVncClientsClientIdGrantControlPost', 'vncClientControlRequestBody', vncClientControlRequestBody)
+            const localVarPath = `/{mode}/v1/session/{sessionUUID}/vnc/clients/{clientId}/grantControl`
+                .replace(`{${"mode"}}`, encodeURIComponent(String(mode)))
+                .replace(`{${"sessionUUID"}}`, encodeURIComponent(String(sessionUUID)))
+                .replace(`{${"clientId"}}`, encodeURIComponent(String(clientId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKey required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key", configuration)
+
+            // authentication ApiKeyUUID required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key-Id", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(vncClientControlRequestBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Remove control from VNC client
+         * @param {string} mode 
+         * @param {string} sessionUUID 
+         * @param {string} clientId 
+         * @param {VncClientControlRequestBody} vncClientControlRequestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1SessionSessionUUIDVncClientsClientIdRemoveControlDelete: async (mode: string, sessionUUID: string, clientId: string, vncClientControlRequestBody: VncClientControlRequestBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'mode' is not null or undefined
+            assertParamExists('modeV1SessionSessionUUIDVncClientsClientIdRemoveControlDelete', 'mode', mode)
+            // verify required parameter 'sessionUUID' is not null or undefined
+            assertParamExists('modeV1SessionSessionUUIDVncClientsClientIdRemoveControlDelete', 'sessionUUID', sessionUUID)
+            // verify required parameter 'clientId' is not null or undefined
+            assertParamExists('modeV1SessionSessionUUIDVncClientsClientIdRemoveControlDelete', 'clientId', clientId)
+            // verify required parameter 'vncClientControlRequestBody' is not null or undefined
+            assertParamExists('modeV1SessionSessionUUIDVncClientsClientIdRemoveControlDelete', 'vncClientControlRequestBody', vncClientControlRequestBody)
+            const localVarPath = `/{mode}/v1/session/{sessionUUID}/vnc/clients/{clientId}/removeControl`
+                .replace(`{${"mode"}}`, encodeURIComponent(String(mode)))
+                .replace(`{${"sessionUUID"}}`, encodeURIComponent(String(sessionUUID)))
+                .replace(`{${"clientId"}}`, encodeURIComponent(String(clientId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKey required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key", configuration)
+
+            // authentication ApiKeyUUID required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key-Id", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(vncClientControlRequestBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get list of VNC clients
+         * @param {string} mode 
+         * @param {string} sessionUUID 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1SessionSessionUUIDVncClientsGet: async (mode: string, sessionUUID: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'mode' is not null or undefined
+            assertParamExists('modeV1SessionSessionUUIDVncClientsGet', 'mode', mode)
+            // verify required parameter 'sessionUUID' is not null or undefined
+            assertParamExists('modeV1SessionSessionUUIDVncClientsGet', 'sessionUUID', sessionUUID)
+            const localVarPath = `/{mode}/v1/session/{sessionUUID}/vnc/clients`
+                .replace(`{${"mode"}}`, encodeURIComponent(String(mode)))
+                .replace(`{${"sessionUUID"}}`, encodeURIComponent(String(sessionUUID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKey required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key", configuration)
+
+            // authentication ApiKeyUUID required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key-Id", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Register VNC API key
+         * @param {string} mode 
+         * @param {string} sessionUUID 
+         * @param {RegisterApiKeyRequestBody} registerApiKeyRequestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1SessionSessionUUIDVncRegisterApiKeyPost: async (mode: string, sessionUUID: string, registerApiKeyRequestBody: RegisterApiKeyRequestBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'mode' is not null or undefined
+            assertParamExists('modeV1SessionSessionUUIDVncRegisterApiKeyPost', 'mode', mode)
+            // verify required parameter 'sessionUUID' is not null or undefined
+            assertParamExists('modeV1SessionSessionUUIDVncRegisterApiKeyPost', 'sessionUUID', sessionUUID)
+            // verify required parameter 'registerApiKeyRequestBody' is not null or undefined
+            assertParamExists('modeV1SessionSessionUUIDVncRegisterApiKeyPost', 'registerApiKeyRequestBody', registerApiKeyRequestBody)
+            const localVarPath = `/{mode}/v1/session/{sessionUUID}/vnc/registerApiKey`
+                .replace(`{${"mode"}}`, encodeURIComponent(String(mode)))
+                .replace(`{${"sessionUUID"}}`, encodeURIComponent(String(sessionUUID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKey required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key", configuration)
+
+            // authentication ApiKeyUUID required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Api-Key-Id", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(registerApiKeyRequestBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * Retrieves a list of all active browser sessions in your environment, including their status, VNC settings, and lease times.
          * @summary ListSessions
@@ -3810,6 +5020,112 @@ export const SessionsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = SessionsApiAxiosParamCreator(configuration)
     return {
         /**
+         * 
+         * @summary Download file from session
+         * @param {string} mode 
+         * @param {string} sessionUUID 
+         * @param {DownloadFileRequestBody} downloadFileRequestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async modeV1SessionSessionUUIDDownloadFilePost(mode: string, sessionUUID: string, downloadFileRequestBody: DownloadFileRequestBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FileDownloadResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modeV1SessionSessionUUIDDownloadFilePost(mode, sessionUUID, downloadFileRequestBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SessionsApi.modeV1SessionSessionUUIDDownloadFilePost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get list of session files
+         * @param {string} mode 
+         * @param {string} sessionUUID 
+         * @param {ModeV1SessionSessionUUIDFilesGetTypeEnum} type Type of files to retrieve
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async modeV1SessionSessionUUIDFilesGet(mode: string, sessionUUID: string, type: ModeV1SessionSessionUUIDFilesGetTypeEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FilesListResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modeV1SessionSessionUUIDFilesGet(mode, sessionUUID, type, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SessionsApi.modeV1SessionSessionUUIDFilesGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Upload file to session
+         * @param {string} mode 
+         * @param {string} sessionUUID 
+         * @param {UploadFileRequestBody} uploadFileRequestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async modeV1SessionSessionUUIDUploadFilePost(mode: string, sessionUUID: string, uploadFileRequestBody: UploadFileRequestBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FileUploadResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modeV1SessionSessionUUIDUploadFilePost(mode, sessionUUID, uploadFileRequestBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SessionsApi.modeV1SessionSessionUUIDUploadFilePost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Grant control to VNC client
+         * @param {string} mode 
+         * @param {string} sessionUUID 
+         * @param {string} clientId 
+         * @param {VncClientControlRequestBody} vncClientControlRequestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async modeV1SessionSessionUUIDVncClientsClientIdGrantControlPost(mode: string, sessionUUID: string, clientId: string, vncClientControlRequestBody: VncClientControlRequestBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modeV1SessionSessionUUIDVncClientsClientIdGrantControlPost(mode, sessionUUID, clientId, vncClientControlRequestBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SessionsApi.modeV1SessionSessionUUIDVncClientsClientIdGrantControlPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Remove control from VNC client
+         * @param {string} mode 
+         * @param {string} sessionUUID 
+         * @param {string} clientId 
+         * @param {VncClientControlRequestBody} vncClientControlRequestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async modeV1SessionSessionUUIDVncClientsClientIdRemoveControlDelete(mode: string, sessionUUID: string, clientId: string, vncClientControlRequestBody: VncClientControlRequestBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modeV1SessionSessionUUIDVncClientsClientIdRemoveControlDelete(mode, sessionUUID, clientId, vncClientControlRequestBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SessionsApi.modeV1SessionSessionUUIDVncClientsClientIdRemoveControlDelete']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get list of VNC clients
+         * @param {string} mode 
+         * @param {string} sessionUUID 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async modeV1SessionSessionUUIDVncClientsGet(mode: string, sessionUUID: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VncClientsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modeV1SessionSessionUUIDVncClientsGet(mode, sessionUUID, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SessionsApi.modeV1SessionSessionUUIDVncClientsGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Register VNC API key
+         * @param {string} mode 
+         * @param {string} sessionUUID 
+         * @param {RegisterApiKeyRequestBody} registerApiKeyRequestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async modeV1SessionSessionUUIDVncRegisterApiKeyPost(mode: string, sessionUUID: string, registerApiKeyRequestBody: RegisterApiKeyRequestBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modeV1SessionSessionUUIDVncRegisterApiKeyPost(mode, sessionUUID, registerApiKeyRequestBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SessionsApi.modeV1SessionSessionUUIDVncRegisterApiKeyPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Retrieves a list of all active browser sessions in your environment, including their status, VNC settings, and lease times.
          * @summary ListSessions
          * @param {string} mode 
@@ -3893,6 +5209,91 @@ export const SessionsApiFactory = function (configuration?: Configuration, baseP
     const localVarFp = SessionsApiFp(configuration)
     return {
         /**
+         * 
+         * @summary Download file from session
+         * @param {string} mode 
+         * @param {string} sessionUUID 
+         * @param {DownloadFileRequestBody} downloadFileRequestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1SessionSessionUUIDDownloadFilePost(mode: string, sessionUUID: string, downloadFileRequestBody: DownloadFileRequestBody, options?: RawAxiosRequestConfig): AxiosPromise<FileDownloadResponse> {
+            return localVarFp.modeV1SessionSessionUUIDDownloadFilePost(mode, sessionUUID, downloadFileRequestBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get list of session files
+         * @param {string} mode 
+         * @param {string} sessionUUID 
+         * @param {ModeV1SessionSessionUUIDFilesGetTypeEnum} type Type of files to retrieve
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1SessionSessionUUIDFilesGet(mode: string, sessionUUID: string, type: ModeV1SessionSessionUUIDFilesGetTypeEnum, options?: RawAxiosRequestConfig): AxiosPromise<FilesListResponse> {
+            return localVarFp.modeV1SessionSessionUUIDFilesGet(mode, sessionUUID, type, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Upload file to session
+         * @param {string} mode 
+         * @param {string} sessionUUID 
+         * @param {UploadFileRequestBody} uploadFileRequestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1SessionSessionUUIDUploadFilePost(mode: string, sessionUUID: string, uploadFileRequestBody: UploadFileRequestBody, options?: RawAxiosRequestConfig): AxiosPromise<FileUploadResponse> {
+            return localVarFp.modeV1SessionSessionUUIDUploadFilePost(mode, sessionUUID, uploadFileRequestBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Grant control to VNC client
+         * @param {string} mode 
+         * @param {string} sessionUUID 
+         * @param {string} clientId 
+         * @param {VncClientControlRequestBody} vncClientControlRequestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1SessionSessionUUIDVncClientsClientIdGrantControlPost(mode: string, sessionUUID: string, clientId: string, vncClientControlRequestBody: VncClientControlRequestBody, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.modeV1SessionSessionUUIDVncClientsClientIdGrantControlPost(mode, sessionUUID, clientId, vncClientControlRequestBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Remove control from VNC client
+         * @param {string} mode 
+         * @param {string} sessionUUID 
+         * @param {string} clientId 
+         * @param {VncClientControlRequestBody} vncClientControlRequestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1SessionSessionUUIDVncClientsClientIdRemoveControlDelete(mode: string, sessionUUID: string, clientId: string, vncClientControlRequestBody: VncClientControlRequestBody, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.modeV1SessionSessionUUIDVncClientsClientIdRemoveControlDelete(mode, sessionUUID, clientId, vncClientControlRequestBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get list of VNC clients
+         * @param {string} mode 
+         * @param {string} sessionUUID 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1SessionSessionUUIDVncClientsGet(mode: string, sessionUUID: string, options?: RawAxiosRequestConfig): AxiosPromise<VncClientsResponse> {
+            return localVarFp.modeV1SessionSessionUUIDVncClientsGet(mode, sessionUUID, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Register VNC API key
+         * @param {string} mode 
+         * @param {string} sessionUUID 
+         * @param {RegisterApiKeyRequestBody} registerApiKeyRequestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modeV1SessionSessionUUIDVncRegisterApiKeyPost(mode: string, sessionUUID: string, registerApiKeyRequestBody: RegisterApiKeyRequestBody, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.modeV1SessionSessionUUIDVncRegisterApiKeyPost(mode, sessionUUID, registerApiKeyRequestBody, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Retrieves a list of all active browser sessions in your environment, including their status, VNC settings, and lease times.
          * @summary ListSessions
          * @param {string} mode 
@@ -3960,6 +5361,105 @@ export const SessionsApiFactory = function (configuration?: Configuration, baseP
  * @extends {BaseAPI}
  */
 export class SessionsApi extends BaseAPI {
+    /**
+     * 
+     * @summary Download file from session
+     * @param {string} mode 
+     * @param {string} sessionUUID 
+     * @param {DownloadFileRequestBody} downloadFileRequestBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SessionsApi
+     */
+    public modeV1SessionSessionUUIDDownloadFilePost(mode: string, sessionUUID: string, downloadFileRequestBody: DownloadFileRequestBody, options?: RawAxiosRequestConfig) {
+        return SessionsApiFp(this.configuration).modeV1SessionSessionUUIDDownloadFilePost(mode, sessionUUID, downloadFileRequestBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get list of session files
+     * @param {string} mode 
+     * @param {string} sessionUUID 
+     * @param {ModeV1SessionSessionUUIDFilesGetTypeEnum} type Type of files to retrieve
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SessionsApi
+     */
+    public modeV1SessionSessionUUIDFilesGet(mode: string, sessionUUID: string, type: ModeV1SessionSessionUUIDFilesGetTypeEnum, options?: RawAxiosRequestConfig) {
+        return SessionsApiFp(this.configuration).modeV1SessionSessionUUIDFilesGet(mode, sessionUUID, type, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Upload file to session
+     * @param {string} mode 
+     * @param {string} sessionUUID 
+     * @param {UploadFileRequestBody} uploadFileRequestBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SessionsApi
+     */
+    public modeV1SessionSessionUUIDUploadFilePost(mode: string, sessionUUID: string, uploadFileRequestBody: UploadFileRequestBody, options?: RawAxiosRequestConfig) {
+        return SessionsApiFp(this.configuration).modeV1SessionSessionUUIDUploadFilePost(mode, sessionUUID, uploadFileRequestBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Grant control to VNC client
+     * @param {string} mode 
+     * @param {string} sessionUUID 
+     * @param {string} clientId 
+     * @param {VncClientControlRequestBody} vncClientControlRequestBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SessionsApi
+     */
+    public modeV1SessionSessionUUIDVncClientsClientIdGrantControlPost(mode: string, sessionUUID: string, clientId: string, vncClientControlRequestBody: VncClientControlRequestBody, options?: RawAxiosRequestConfig) {
+        return SessionsApiFp(this.configuration).modeV1SessionSessionUUIDVncClientsClientIdGrantControlPost(mode, sessionUUID, clientId, vncClientControlRequestBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Remove control from VNC client
+     * @param {string} mode 
+     * @param {string} sessionUUID 
+     * @param {string} clientId 
+     * @param {VncClientControlRequestBody} vncClientControlRequestBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SessionsApi
+     */
+    public modeV1SessionSessionUUIDVncClientsClientIdRemoveControlDelete(mode: string, sessionUUID: string, clientId: string, vncClientControlRequestBody: VncClientControlRequestBody, options?: RawAxiosRequestConfig) {
+        return SessionsApiFp(this.configuration).modeV1SessionSessionUUIDVncClientsClientIdRemoveControlDelete(mode, sessionUUID, clientId, vncClientControlRequestBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get list of VNC clients
+     * @param {string} mode 
+     * @param {string} sessionUUID 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SessionsApi
+     */
+    public modeV1SessionSessionUUIDVncClientsGet(mode: string, sessionUUID: string, options?: RawAxiosRequestConfig) {
+        return SessionsApiFp(this.configuration).modeV1SessionSessionUUIDVncClientsGet(mode, sessionUUID, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Register VNC API key
+     * @param {string} mode 
+     * @param {string} sessionUUID 
+     * @param {RegisterApiKeyRequestBody} registerApiKeyRequestBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SessionsApi
+     */
+    public modeV1SessionSessionUUIDVncRegisterApiKeyPost(mode: string, sessionUUID: string, registerApiKeyRequestBody: RegisterApiKeyRequestBody, options?: RawAxiosRequestConfig) {
+        return SessionsApiFp(this.configuration).modeV1SessionSessionUUIDVncRegisterApiKeyPost(mode, sessionUUID, registerApiKeyRequestBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * Retrieves a list of all active browser sessions in your environment, including their status, VNC settings, and lease times.
      * @summary ListSessions
@@ -4029,5 +5529,13 @@ export class SessionsApi extends BaseAPI {
     }
 }
 
+/**
+ * @export
+ */
+export const ModeV1SessionSessionUUIDFilesGetTypeEnum = {
+    Upload: 'upload',
+    Download: 'download'
+} as const;
+export type ModeV1SessionSessionUUIDFilesGetTypeEnum = typeof ModeV1SessionSessionUUIDFilesGetTypeEnum[keyof typeof ModeV1SessionSessionUUIDFilesGetTypeEnum];
 
 
